@@ -1,0 +1,15 @@
+version: '3'
+services:
+  cypress:
+    image: cypress/included:12.17.4  # Use the Cypress Docker image version you prefer
+    container_name: cypress_tests
+    working_dir: /e2e
+    volumes:
+      - ./cypress:/e2e  # Mount your Cypress test directory into the container
+    environment:
+      - DISPLAY=:0  # Set the display environment variable if using Xvfb
+    depends_on:
+      - xvfb  # Optional: Use if you are running Xvfb in another container
+
+  # Optional: Xvfb container to run Cypress in headless mode
+  xvfb
